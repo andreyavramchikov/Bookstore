@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block site_wrapper %}
+<div id="main">
+	<div id="banner">
+		[link to cart here]
+		Modern Musician		
+	</div>
+	
+	<div id="navigation">
+		{% include "tags/navigation.html" %}
+	</div>
+	
+	<div id="middle">
+		<div id="sidebar">
+		[search box here]
+		[category listing here]
+		</div>
+			
+		<div id="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+	</div>
+	
+	<div id="footer">
+		[footer here]
+	</div>
+	
+</div>
+{% endblock %}
