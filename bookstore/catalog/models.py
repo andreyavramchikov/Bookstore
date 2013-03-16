@@ -21,6 +21,11 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
     
+    @models.permalink
+    def get_absolute_url(self):
+        return ('catalog_category', (), { 'category_slug': self.slug })
+
+    
 class Product(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
@@ -38,7 +43,7 @@ class Product(models.Model):
     meta_description = models.CharField("Meta Description", max_length=255, help_text='Content for description meta tag')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    catetogries = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category)
 
     class Meta:
         db_table = 'products'
@@ -52,3 +57,7 @@ class Product(models.Model):
             return self.price
         else:
             return None
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('catalog_product', (), { 'product_slug': self.slug })

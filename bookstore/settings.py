@@ -125,9 +125,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookstore.catalog',
     'django.contrib.admin',
     'django.contrib.admindocs',
+    'bookstore.catalog',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

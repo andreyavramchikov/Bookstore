@@ -7,7 +7,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-     url(r'^catalog/$', 'bookstore.catalog.views.home', name='home'),
+     (r'^', include('catalog.urls')),
      url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
      url(r'^admin/', include(admin.site.urls)),
 )
