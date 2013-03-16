@@ -159,3 +159,6 @@ LOGGING = {
         },
     }
 }
+
+handler404 = 'bookstore.views.file_not_found_404'
+
