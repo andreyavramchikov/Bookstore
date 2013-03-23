@@ -86,10 +86,9 @@ div.product_thumbnail{
 	float:left;
 	width:150px;
 	height:200px;
-}
+/* } */
 /* product page styles */
 div.product_image{
 	float:left;
 	padding:0 10px 10px 0;
 }
-
