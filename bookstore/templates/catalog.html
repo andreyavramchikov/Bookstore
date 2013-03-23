@@ -1,9 +1,14 @@
 {% extends "base.html" %}
+{% load catalog_filters %}
+
 
 {% block site_wrapper %}
 <div id="main">
 	<div id="banner">
-		[link to cart here]
+		<div class="cart_box">
+			{% cart_box request %}
+		</div>
+		
 		Modern Musician		
 	</div>
 	
