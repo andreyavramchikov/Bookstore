@@ -1,6 +1,8 @@
 from django.contrib import admin
-from catalog.forms import ProductAdminForm
-from catalog.models import Product, Category
+from bookstore.catalog.forms import ProductAdminForm
+from bookstore.catalog.models import Product, Category
+from bookstore.catalog.models import Publisher
+from bookstore.catalog.models import Author, Address
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -29,3 +31,6 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug' : ('name',)}
 
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Publisher)
+admin.site.register(Address)
+admin.site.register(Author)

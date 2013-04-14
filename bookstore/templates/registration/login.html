@@ -1,26 +1,59 @@
-    {% if form.errors %}
-        <ul class="errorlist">
-            <li>You entered an invalid username or password.</li>
-        </ul>
-        <br />
-    {% endif %}
-    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-        {% csrf_token %}
-        <table summary="Login" id="login">
-            <caption>Login</caption>
-            <tr>
-                <td>{{ form.username.label_tag }}:</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}:</td>
-                <td>{{ form.password }}</td>
-            </tr>
-            <tr>
-                <td colspan="2" class="right">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "XHTML1-s.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <link rel="stylesheet" href="/media/admin/css/login.css" />
+</head>
+
+<body>
+<div class="login-page">
+<img src="/media/admin/img/background-1.jpg"  class="backbground-img"/>
+    <div class="form-box-login">
+        {% if form.errors %}
+            <ul class="errorlist">
+                <li>You entered an invalid username or password.</li>
+            </ul>
+            <br />
+        {% endif %}
+        <form method="post" action="{% url 'django.contrib.auth.views.login' %}" class="form-login">
+            {% csrf_token %}
+            <div class="login-content">
+                <h2 class="header-text">Login to my bookstore</h2>
+                <div class="form-field email">
+                    <label class="form-label">User name</label>
+                    <div class="form-field-input">{{ form.username }}</div>
+                </div>
+                <div class="form-field password">
+                    <label class="form-label">Password</label>
+                    <div class="form-field-input">{{ form.password }}</div>
+                </div>
+                <div class="submit-button">
                     <input type="submit" value="Login" />
-                </td>
-            </tr>
-        </table>
-        <input type="hidden" name="next" value="{{ next }}" />
-    </form>
+                </div>
+            </div>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

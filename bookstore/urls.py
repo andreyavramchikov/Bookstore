@@ -7,8 +7,10 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-     (r'^', include('catalog.urls')),
-     (r'^', include('cart.urls')),
-     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-     url(r'^admin/', include(admin.site.urls)),
+     (r'^', include('bookstore.catalog.urls')),
+     (r'^', include('bookstore.cart.urls')),
+     (r'^accounts/', include('bookstore.accounts.urls')),
+     (r'^accounts/', include('django.contrib.auth.urls')),
+     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+     (r'^admin/', include(admin.site.urls)),
 )

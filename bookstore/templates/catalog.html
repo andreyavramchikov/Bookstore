@@ -13,13 +13,13 @@
 	</div>
 	
 	<div id="navigation">
-		{% include "tags/navigation.html" %}
+        {% include "tags/navigation.html" %}
 	</div>
 	
 	<div id="middle">
 		<div id="sidebar">
 		[search box here]
-		{% include "tags/category_list.html" %}
+            {% category_list request.path %}
 		</div>
 			
 		<div id="content">

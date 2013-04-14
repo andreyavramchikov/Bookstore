@@ -1,8 +1,8 @@
 import random
 import decimal
-from catalog.models import Product
-from models import CartItem
 from django.shortcuts import get_object_or_404
+from bookstore.cart.models import CartItem
+from bookstore.catalog.models import Product
 
 CART_ID_SESSION_KEY = 'cart_id'
 

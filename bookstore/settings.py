@@ -112,7 +112,7 @@ ROOT_URLCONF = 'bookstore.urls'
 WSGI_APPLICATION = 'bookstore.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/andrey/Diplom/bookstore/bookstore/templates'
+    '/home/andrey/bookstore/Bookstore/bookstore/templates'
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -126,10 +126,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'south',
     'django.contrib.admindocs',
     'bookstore.catalog',
     'bookstore.cart',
+    'bookstore.accounts',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -163,3 +163,4 @@ LOGGING = {
 
 handler404 = 'bookstore.views.file_not_found_404'
 
+LOGIN_REDIRECT_URL = 'catalog_home'
