@@ -39,8 +39,6 @@ html,body{
 
 #footer{
 	clear: both;
-	background-color: #98AC5E;
-	color: White;
 	text-align: center;
 }
 
@@ -86,6 +84,7 @@ div.product_thumbnail{
 	float:left;
 	width:150px;
 	height:200px;
+}
 /* } */
 /* product page styles */
 div.product_image{
@@ -93,4 +92,12 @@ div.product_image{
 	padding:0 10px 10px 0;
 }
 
+.product-image{
+    width: 100px;
+    height: 100px;
+}
 
+.category-image{
+    width: 100px;
+    height: 100px;
+}

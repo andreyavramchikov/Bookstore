@@ -87,7 +87,7 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     author = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, null=True, blank=True)
-    categories = models.ManyToManyField(Category)
+    categories = models.ManyToManyField(Category, through="ProductCategories")
 
     class Meta:
         db_table = 'products'
@@ -105,3 +105,7 @@ class Product(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('catalog_product', (), { 'product_slug': self.slug })
+
+class ProductCategories(models.Model):
+    product = models.ForeignKey(Product)
+    category = models.ForeignKey(Category)

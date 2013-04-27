@@ -6,7 +6,7 @@
 	{% for product in products %}
 		<div class="product_thumbnail">
 			<a href="{{ product.get_absolute_url }}">
-			<img src="{{ MEDIA_URL }}admin/img/{{ product.image}}"
+			<img class="category-image" src="{{ MEDIA_URL }}admin/img/{{ product.image}}"
 			alt="{{ product.name }}" class="bn" />
 			<br />
 			{{ product.name }}

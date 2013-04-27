@@ -7,7 +7,7 @@
       "slug" : "slug1",
       "brand" : "brand1",
       "sku" : "sku1",
-      "image" : "image1",
+      "image" : "1.jpg",
       "price" : 1,
       "old_price" : 1,
       "is_active" : 1,
@@ -19,10 +19,10 @@
       "meta_description" : "meta_description1",
       "created_at" : "2012-12-12 11:11",
       "updated_at" : "2012-12-12 11:11",
-      "categories" : "1"
+      "publisher" : 1
     }
   },
-  
+
   {
     "model": "catalog.product",
     "pk": 2,
@@ -31,7 +31,7 @@
       "slug" : "slug2",
       "brand" : "brand2",
       "sku" : "sku2",
-      "image" : "image2",
+      "image" : "2.jpg",
       "price" : 2,
       "old_price" : 2,
       "is_active" : 1,
@@ -43,10 +43,10 @@
       "meta_description" : "meta_description2",
       "created_at" : "2012-12-12 11:11",
       "updated_at" : "2012-12-12 11:11",
-      "categories" : "2"
+        "publisher" : 1
     }
   },
-  
+
   {
     "model": "catalog.product",
     "pk": 3,
@@ -55,7 +55,7 @@
       "slug" : "slug3",
       "brand" : "brand3",
       "sku" : "sku3",
-      "image" : "image3",
+      "image" : "3.jpg",
       "price" : 3,
       "old_price" : 3,
       "is_active" : 1,
@@ -67,7 +67,223 @@
       "meta_description" : "meta_description3",
       "created_at" : "2012-12-12 11:11",
       "updated_at" : "2012-12-12 11:11",
-      "categories" : "3"
+        "publisher" : 1
     }
-  }
+  },
+
+    {
+        "model": "catalog.product",
+        "pk": 4,
+        "fields": {
+            "name": "product4",
+            "slug" : "slug4",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "4.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 5,
+        "fields": {
+            "name": "product5",
+            "slug" : "slug5",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "5.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 6,
+        "fields": {
+            "name": "product6",
+            "slug" : "slug6",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "6.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 7,
+        "fields": {
+            "name": "product7",
+            "slug" : "slug7",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "7.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 8,
+        "fields": {
+            "name": "product8",
+            "slug" : "slug8",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "8.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 9,
+        "fields": {
+            "name": "product9",
+            "slug" : "slug9",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "9.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 10,
+        "fields": {
+            "name": "product10",
+            "slug" : "slug10",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "10.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 11,
+        "fields": {
+            "name": "product11",
+            "slug" : "slug11",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "11.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    },
+
+    {
+        "model": "catalog.product",
+        "pk": 12,
+        "fields": {
+            "name": "product12",
+            "slug" : "slug12",
+            "brand" : "brand1",
+            "sku" : "sku1",
+            "image" : "12.jpg",
+            "price" : 1,
+            "old_price" : 1,
+            "is_active" : 1,
+            "is_bestseller" : 1,
+            "is_featured" : 1,
+            "quantity" : 11111,
+            "description" : "Description1",
+            "meta_keywords" : "meta_keywords1",
+            "meta_description" : "meta_description1",
+            "created_at" : "2012-12-12 11:11",
+            "updated_at" : "2012-12-12 11:11",
+            "publisher" : 1
+        }
+    }
 ]

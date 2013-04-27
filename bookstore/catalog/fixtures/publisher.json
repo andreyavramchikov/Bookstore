@@ -1,0 +1,28 @@
+[
+    {
+        "model": "catalog.publisher",
+        "pk": 1,
+        "fields": {
+            "name": "publisher1",
+            "type" : "B"
+        }
+    },
+    {
+        "model": "catalog.publisher",
+        "pk": 2,
+        "fields": {
+            "name": "publisher1",
+            "type" : "B"
+        }
+    },
+
+    {
+        "model": "catalog.publisher",
+        "pk": 3,
+        "fields": {
+            "name": "publisher1",
+            "type" : "B"
+        }
+    }
+
+]
