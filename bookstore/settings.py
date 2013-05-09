@@ -7,7 +7,8 @@ ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
 
-
+### Path of the project folder
+PROJECT_PATH = os.path.realpath(os.path.join(os.path.dirname(__file__), '..'))
 
 MANAGERS = ADMINS
 
@@ -113,7 +114,7 @@ ROOT_URLCONF = 'bookstore.urls'
 WSGI_APPLICATION = 'bookstore.wsgi.application'
 
 TEMPLATE_DIRS = (
-    '/home/andrey/bookstore/Bookstore/bookstore/templates'
+    os.path.join(PROJECT_PATH, 'bookstore', 'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
