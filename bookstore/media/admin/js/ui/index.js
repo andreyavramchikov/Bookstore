@@ -1,27 +1,18 @@
 
-$(function(){
-//    $('#feature_list').infinitescroll({
-//        navSelector: "#navigation",
-//        nextSelector: "#navigation a:first",
-//        extractNext: false,
-//        itemSelector: "#feature_list>li.feature-item",
-//        loadingSpinner: '#store-spinner',
-//        precachedItemSelector: '.precached-item',
-//        precachedMode: true,
-//        precachedImages: true,
-//        bufferPx: 800
-//    });
 
+ $(document).ready(function() {
+   $('.category-image').click(function(){
+            var $el =  $('#category-expand-image'),
+            html = $el.html();
 
-    $('#content').infinitescroll({
+            $('.category-image').fancybox(
+            html,
+            {
 
-        navSelector  : "div.navigation",
-        // selector for the paged navigation (it will be hidden)
-        nextSelector : "div.navigation a:first",
-        // selector for the NEXT link (to page 2)
-        itemSelector : "#content div.post"
-        // selector for all items you'll retrieve
-    });
-});
+                'width': 500,
+                'height': 500
 
-
+            }
+        );
+        });
+ });

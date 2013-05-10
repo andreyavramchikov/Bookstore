@@ -24,7 +24,7 @@ PYBLISHER_TYPE_CHOICES = (
 class Address(models.Model):
     country = models.CharField(max_length=100, choices=COUNTRY_CHOICES, default=None)
     city = models.CharField(max_length=50)
-    state = models.CharField(max_length=100, choices=STATE_CHOICES,default=None)
+    state = models.CharField(max_length=100, choices=STATE_CHOICES, default=None)
     street = models.CharField(max_length=100)
     house = models.CharField(max_length=100)
     flat = models.CharField(max_length=100)
@@ -39,7 +39,7 @@ class Author(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     meta_keywords = models.CharField("Meta Keywords",max_length=255,
                                      help_text='Comma-delimited set of SEO keywords for meta tag', null=True, blank=True)
