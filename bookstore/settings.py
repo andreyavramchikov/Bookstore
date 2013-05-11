@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     'bookstore.catalog',
     'bookstore.cart',
     'bookstore.accounts',
+    'bookstore.search',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -167,3 +168,5 @@ LOGGING = {
 handler404 = 'bookstore.views.file_not_found_404'
 
 LOGIN_REDIRECT_URL = 'catalog_home'
+
+PRODUCTS_PER_PAGE = 3

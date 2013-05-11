@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load catalog_filters %}
+{% load catalog_filters search_tags%}
 
 
 {% block site_wrapper %}
@@ -18,7 +18,7 @@
 	
 	<div id="middle">
 		<div id="sidebar">
-		[search box here]
+		    {% search_box request %}
             {% category_list request.path %}
 		</div>
 			

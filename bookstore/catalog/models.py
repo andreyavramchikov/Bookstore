@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 COUNTRY_CHOICES = (
     ('BR', 'Belarus'),
     ('RUS', 'Russia'),
@@ -65,7 +67,11 @@ class Publisher(models.Model):
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=50, choices=PYBLISHER_TYPE_CHOICES, default=None)
 
-    
+
+class ActiveProductManager(models.Manager):
+        def get_query_set(self):
+            return super(ActiveProductManager, self).get_query_set().filter(is_active=True)
+
 class Product(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
@@ -88,6 +94,10 @@ class Product(models.Model):
     author = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, null=True, blank=True)
     categories = models.ManyToManyField(Category, through="ProductCategories")
+
+    objects = models.Manager()
+    active = ActiveProductManager()
+
 
     class Meta:
         db_table = 'products'
