@@ -10,7 +10,12 @@
 			<td>Total</td>
 		</tr>
 		{% if cart_items %}
-			{% for item in cart_items %}
+			<form method="post" action="{% url 'order' %}">
+                {% csrf_token %}
+			    <input type="hidden" name="cart_id" value="{{ cart_id }}" />
+				<input type="submit" name="submit" value="Order"/>
+			</form>
+            {% for item in cart_items %}
 			<tr>
 				<td>
 					<a href="{{ item.get_absolute_url }}" class="cart">
@@ -32,7 +37,7 @@
 				</td>
 				<td>
 					<form method="post" action="." class="cart">
-					{% csrf_token %}
+					    {% csrf_token %}
 						<input type="hidden" name="item_id" value="{{ item.id }}" />
 						<input type="submit" name="submit" value="Remove"/>
 					</form>
@@ -47,8 +52,5 @@
 		<tr>
 			Cart Subtotal : {{ cart_subtotal }}
 		</tr>
-		
-		
-		
 	</table>
 {% endblock %}

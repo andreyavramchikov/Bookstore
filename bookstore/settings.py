@@ -130,10 +130,13 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.flatpages',
+    'bookstore.order',
     'bookstore.catalog',
     'bookstore.cart',
     'bookstore.accounts',
+    'bookstore.feedback',
     'bookstore.search',
+    'bookstore.order',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -170,3 +173,4 @@ handler404 = 'bookstore.views.file_not_found_404'
 LOGIN_REDIRECT_URL = 'catalog_home'
 
 PRODUCTS_PER_PAGE = 3
+

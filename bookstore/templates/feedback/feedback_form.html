@@ -1,0 +1,11 @@
+{% extends "catalog.html" %}
+{% block content %}
+<h1>Hello!</h1>
+
+<form action="." method="post">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <input type="submit" />
+
+</form>
+{% endblock %}

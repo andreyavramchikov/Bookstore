@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 # Create your models here.
@@ -8,10 +9,13 @@ class CartItem(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     quantity = models.IntegerField(default=1)
     product = models.ForeignKey('catalog.Product', unique=False)
-    
+
+    def __unicode__(self):
+        return self.product.name + ' ' + str(self.quantity)
+
     class Meta:
-        db_table = 'cart_items'
         ordering = ['date_added']
+        verbose_name_plural = 'Продукт в корзине'
         
     def augment_quantity(self, quantity):
         self.quantity = self.quantity + int(quantity)
@@ -28,6 +32,7 @@ class CartItem(models.Model):
     
     def get_absolute_url(self):
         return self.product.get_absolute_url()
+
 
 
 

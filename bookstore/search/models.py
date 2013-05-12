@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -10,5 +11,8 @@ class SearchTerm(models.Model):
 
     def __unicode__(self):
         return self.q
+
+    class Meta:
+        verbose_name_plural = 'Поисковые запросы'
 
 

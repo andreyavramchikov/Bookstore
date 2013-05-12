@@ -4,6 +4,7 @@ from bookstore.catalog.models import Product, Category, ProductCategories
 from bookstore.catalog.models import Publisher
 from bookstore.catalog.models import Author, Address
 import uuid
+from catalog.models import OrderProductXref
 
 
 def clone_product(modeladmin, request, queryset):
@@ -17,7 +18,6 @@ def clone_product(modeladmin, request, queryset):
 
 clone_product.short_description = "Clone selected products"
 
-
 class ProductAdmin(admin.ModelAdmin):
     form = ProductAdminForm
     
@@ -26,7 +26,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_per_page = 50
     ordering = ['-created_at']
     actions = [clone_product]
-
 
     search_fields = ['name', 'description', 'meta_keywords', 'meta_description']
     # sets up slug to be generated from product name
@@ -45,6 +44,12 @@ class CategoryAdmin(admin.ModelAdmin):
 # sets up slug to be generated from category name
     prepopulated_fields = {'slug' : ('name',)}
 
+class OrderProductXrefAdmin(admin.ModelAdmin):
+    list_display = ('product', 'order', 'quantity')
+    readonly_fields = ('order',)
+    raw_id_fields = ('product',)
+
+admin.site.register(OrderProductXref, OrderProductXrefAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Publisher)
 admin.site.register(Address)

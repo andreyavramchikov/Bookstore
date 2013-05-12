@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 
 # Create your models here.
-
+from bookstore.order.models import Order,Merchant
 
 COUNTRY_CHOICES = (
     ('BR', 'Belarus'),
@@ -31,11 +32,17 @@ class Address(models.Model):
     house = models.CharField(max_length=100)
     flat = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name_plural = 'Адрес'
+
 class Author(models.Model):
     name = models.CharField(max_length=50)
     surname = models.CharField(max_length=50)
     age = models.IntegerField(blank=True)
     address = models.ForeignKey(Address, null=True, blank=True)
+
+    class Meta:
+        verbose_name_plural = 'Автор'
 
 
 class Category(models.Model):
@@ -51,9 +58,8 @@ class Category(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
-        db_table = 'categories'
         ordering = ['-created_at']
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = 'Категория'
 
     def __unicode__(self):
         return self.name
@@ -66,6 +72,9 @@ class Category(models.Model):
 class Publisher(models.Model):
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=50, choices=PYBLISHER_TYPE_CHOICES, default=None)
+
+    class Meta:
+        verbose_name_plural = 'Публицист'
 
 
 class ActiveProductManager(models.Manager):
@@ -94,13 +103,14 @@ class Product(models.Model):
     author = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, null=True, blank=True)
     categories = models.ManyToManyField(Category, through="ProductCategories")
+    orders = models.ManyToManyField(Order, through='OrderProductXref')
+    merchants = models.ManyToManyField(Merchant, through='MerchantProductXref')
 
     objects = models.Manager()
     active = ActiveProductManager()
 
 
     class Meta:
-        db_table = 'products'
         ordering = ['-created_at']
         
     def __unicode__(self):
@@ -116,6 +126,24 @@ class Product(models.Model):
     def get_absolute_url(self):
         return ('catalog_product', (), { 'product_slug': self.slug })
 
+    class Meta:
+        verbose_name_plural = 'Книга'
+
 class ProductCategories(models.Model):
     product = models.ForeignKey(Product)
     category = models.ForeignKey(Category)
+
+class OrderProductXref(models.Model):
+    product = models.ForeignKey(Product)
+    order = models.ForeignKey(Order)
+    quantity = models.IntegerField()
+
+    def __unicode__(self):
+        return self.product.name
+
+    class Meta:
+        verbose_name_plural = 'Продукты заказа'
+
+class MerchantProductXref(models.Model):
+    product = models.ForeignKey(Product)
+    merchant = models.ForeignKey(Merchant)

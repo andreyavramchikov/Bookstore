@@ -3,6 +3,7 @@ import decimal
 from django.shortcuts import get_object_or_404
 from bookstore.cart.models import CartItem
 from bookstore.catalog.models import Product
+from order.models import Order
 
 CART_ID_SESSION_KEY = 'cart_id'
 
