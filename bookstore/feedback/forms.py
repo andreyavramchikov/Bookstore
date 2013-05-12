@@ -1,7 +1,6 @@
 from django import forms
-from django.core.mail import mail_managers
+from django.core.mail import send_mail
 from django.template.loader import render_to_string
-from django.core.mail.message import EmailMessage
 
 
 class FeedbackForm(forms.Form):
@@ -24,6 +23,8 @@ class FeedbackForm(forms.Form):
 
         subject = 'mail' + u'feedback'
         recepients = ('aldrson@gmail.com',)
-        msg = EmailMessage('ls', message, 'aldrson@gmail.com', recepients, headers={})
-        msg.send()
+
+        send_mail(subject, 'Message', 'aldrson@gmail.com', ['aldrson@gmail.com'], fail_silently=False)
+
+
         # mail_managers(subject, message, fail_silently=False)

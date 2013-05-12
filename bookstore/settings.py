@@ -172,5 +172,14 @@ handler404 = 'bookstore.views.file_not_found_404'
 
 LOGIN_REDIRECT_URL = 'catalog_home'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'aldrson@gmail.com'
+EMAIL_HOST_PASSWORD = 'andreypasan'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+
+
+
 PRODUCTS_PER_PAGE = 3
 
