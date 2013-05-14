@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 from django.db.models import Q
-from catalog.models import Product
+from catalog.models import Book
 from models import SearchTerm
 
 STRIP_WORDS = ['a','an','and','by','for','from','in','no','not','of','on','or','that','the','to','with']
@@ -15,17 +16,17 @@ def store(request, q):
         term.save()
 
 
-def products(search_text):
+def books(search_text):
     words = _prepare_words(search_text)
-    products = Product.active.all()
+    books = Book.active.all()
     results = {}
-    results['products'] = []
+    results['books'] = []
 
     for word in words:
-        products = products.filter( Q(name__icontains=word) | Q(description__icontains=word) |
+        books = books.filter( Q(name__icontains=word) | Q(description__icontains=word) |
                                     Q(sku__iexact=word) | Q(brand__icontains=word) |
                                     Q(meta_description__icontains=word) | Q(meta_keywords__icontains=word))
-    results['products'] = products
+    results['books'] = books
     return results
 
 

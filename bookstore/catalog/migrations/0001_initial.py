@@ -22,8 +22,8 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'catalog', ['Category'])
 
-        # Adding model 'Product'
-        db.create_table('products', (
+        # Adding model 'Book'
+        db.create_table('books', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('name_for_south', self.gf('django.db.models.fields.CharField')(max_length=255)),
@@ -43,26 +43,26 @@ class Migration(SchemaMigration):
             ('created_at', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
             ('updated_at', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
         ))
-        db.send_create_signal(u'catalog', ['Product'])
+        db.send_create_signal(u'catalog', ['Book'])
 
-        # Adding M2M table for field catetories on 'Product'
-        db.create_table('products_catetories', (
+        # Adding M2M table for field catetories on 'Book'
+        db.create_table('books_catetories', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('product', models.ForeignKey(orm[u'catalog.product'], null=False)),
+            ('book', models.ForeignKey(orm[u'catalog.book'], null=False)),
             ('category', models.ForeignKey(orm[u'catalog.category'], null=False))
         ))
-        db.create_unique('products_catetories', ['product_id', 'category_id'])
+        db.create_unique('books_catetories', ['book_id', 'category_id'])
 
 
     def backwards(self, orm):
         # Deleting model 'Category'
         db.delete_table('categories')
 
-        # Deleting model 'Product'
-        db.delete_table('products')
+        # Deleting model 'Book'
+        db.delete_table('books')
 
-        # Removing M2M table for field catetories on 'Product'
-        db.delete_table('products_catetories')
+        # Removing M2M table for field catetories on 'Book'
+        db.delete_table('books_catetories')
 
 
     models = {
@@ -78,8 +78,8 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         },
-        u'catalog.product': {
-            'Meta': {'ordering': "['-created_at']", 'object_name': 'Product', 'db_table': "'products'"},
+        u'catalog.book': {
+            'Meta': {'ordering': "['-created_at']", 'object_name': 'Book', 'db_table': "'books'"},
             'brand': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'catetories': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['catalog.Category']", 'symmetrical': 'False'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),

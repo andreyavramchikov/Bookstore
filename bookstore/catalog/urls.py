@@ -6,6 +6,6 @@ urlpatterns = patterns('bookstore.catalog.views',
         (r'^category/(?P<category_slug>[-\w]+)/$', 'show_category', 
                     {'template_name':'catalog/category.html'}, 'catalog_category'),
                        
-        (r'^product/(?P<product_slug>[-\w]+)/$', 'show_product', 
-                    {'template_name':'catalog/product.html'},'catalog_product'),
+        (r'^book/(?P<book_slug>[-\w]+)/$', 'show_book',
+                    {'template_name':'catalog/book.html'},'catalog_book'),
     )

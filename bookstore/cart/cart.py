@@ -2,7 +2,7 @@ import random
 import decimal
 from django.shortcuts import get_object_or_404
 from bookstore.cart.models import CartItem
-from bookstore.catalog.models import Product
+from bookstore.catalog.models import Book
 from order.models import Order
 
 CART_ID_SESSION_KEY = 'cart_id'
@@ -27,18 +27,18 @@ def get_cart_items(request):
 def add_to_cart(request):
     ''' Here depending on request I have to save to db quantity in cart and variant of it '''
     quantity = request.POST.get('quantity',1)
-    product_slug = request.POST.get('product_slug','')
-    product = get_object_or_404(Product, slug=product_slug)
+    book_slug = request.POST.get('book_slug','')
+    book = get_object_or_404(Book, slug=book_slug)
     cart_id = _cart_id(request)
     cart_items = get_cart_items(request)
-    product_in_cart = False
+    book_in_cart = False
     for cart_item in cart_items:
         '''if alredy exist ++quantity'''
-        if cart_item.product.id == product.id:
+        if cart_item.book.id == book.id:
             cart_item.augment_quantity(quantity)
-            product_in_cart = True
-    if not product_in_cart:
-        cart_item = CartItem.objects.create(cart_id=cart_id, quantity=quantity, product=product)
+            book_in_cart = True
+    if not book_in_cart:
+        cart_item = CartItem.objects.create(cart_id=cart_id, quantity=quantity, book=book)
         
 def update_cart(request):
     post_data = request.POST.copy()
@@ -63,9 +63,9 @@ def remove_from_cart(request):
 # gets the total cost for the current cart
 def cart_subtotal(request):
     cart_total = decimal.Decimal('0.00')
-    cart_products = get_cart_items(request)
-    for cart_item in cart_products:
-        cart_total += cart_item.product.price * cart_item.quantity
+    cart_books = get_cart_items(request)
+    for cart_item in cart_books:
+        cart_total += cart_item.book.price * cart_item.quantity
     return cart_total
 
     

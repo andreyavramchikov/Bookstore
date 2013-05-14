@@ -3,13 +3,13 @@
 	<h1>{{ category.name }}</h1>
 	{{ category.description }}
 	<br /><br />
-	{% for product in products %}
-		<div class="product_thumbnail">
-			<a href="{{ product.get_absolute_url }}">
-			<img class="category-image" src="{{ MEDIA_URL }}admin/img/{{ product.image}}"
-			alt="{{ product.name }}" class="bn" />
+	{% for book in books %}
+		<div class="book_thumbnail">
+			<a href="{{ book.get_absolute_url }}">
+			<img class="category-image" src="{{ MEDIA_URL }}admin/img/{{ book.image}}"
+			alt="{{ book.name }}" class="bn" />
 			<br />
-			{{ product.name }}
+			{{ book.name }}
 			</a>
 		</div>
 	{% endfor %}

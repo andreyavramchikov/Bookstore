@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -16,7 +17,7 @@ def results(request, template_name="search/results.html"):
         page = int(request.GET.get('page', 1))
     except ValueError:
         page = 1
-    matching = search.products(q).get('products')
+    matching = search.books(q).get('books')
     paginator = Paginator(matching,settings.PRODUCTS_PER_PAGE)
     try:
         results = paginator.page(page).object_list

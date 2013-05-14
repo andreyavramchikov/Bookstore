@@ -8,29 +8,29 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Removing M2M table for field catetories on 'Product'
-        db.delete_table('products_catetories')
+        # Removing M2M table for field catetories on 'Book'
+        db.delete_table('books_catetories')
 
-        # Adding M2M table for field categories on 'Product'
-        db.create_table('products_categories', (
+        # Adding M2M table for field categories on 'Book'
+        db.create_table('books_categories', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('product', models.ForeignKey(orm[u'catalog.product'], null=False)),
+            ('book', models.ForeignKey(orm[u'catalog.book'], null=False)),
             ('category', models.ForeignKey(orm[u'catalog.category'], null=False))
         ))
-        db.create_unique('products_categories', ['product_id', 'category_id'])
+        db.create_unique('books_categories', ['book_id', 'category_id'])
 
 
     def backwards(self, orm):
-        # Adding M2M table for field catetories on 'Product'
-        db.create_table('products_catetories', (
+        # Adding M2M table for field catetories on 'Book'
+        db.create_table('books_catetories', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
-            ('product', models.ForeignKey(orm[u'catalog.product'], null=False)),
+            ('book', models.ForeignKey(orm[u'catalog.book'], null=False)),
             ('category', models.ForeignKey(orm[u'catalog.category'], null=False))
         ))
-        db.create_unique('products_catetories', ['product_id', 'category_id'])
+        db.create_unique('books_catetories', ['book_id', 'category_id'])
 
-        # Removing M2M table for field categories on 'Product'
-        db.delete_table('products_categories')
+        # Removing M2M table for field categories on 'Book'
+        db.delete_table('books_categories')
 
 
     models = {
@@ -46,8 +46,8 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         },
-        u'catalog.product': {
-            'Meta': {'ordering': "['-created_at']", 'object_name': 'Product', 'db_table': "'products'"},
+        u'catalog.book': {
+            'Meta': {'ordering': "['-created_at']", 'object_name': 'Book', 'db_table': "'books'"},
             'brand': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['catalog.Category']", 'symmetrical': 'False'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),

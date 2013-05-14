@@ -2,38 +2,21 @@
 from django.db import models
 
 # Create your models here.
-from bookstore.order.models import Order,Merchant
-
-COUNTRY_CHOICES = (
-    ('BR', 'Belarus'),
-    ('RUS', 'Russia'),
-    ('USA', 'United States'),
-    ('EU', 'Europre'),
-    ('OT', 'Other'),
-)
-
-STATE_CHOICES = (
-    ('AL', 'Alaska'),
-    ('NJ', 'New Jersey'),
-)
-
-PYBLISHER_TYPE_CHOICES = (
-    ('B', 'Big'),
-    ('M', 'Midium'),
-    ('S', 'Small'),
-)
+from bookstore.order.models import Order,Merchant,Delivery
+from catalog.utils import COUNTRIES,STATES,PUBLISHER_TYPE_CHOICES
 
 
 class Address(models.Model):
-    country = models.CharField(max_length=100, choices=COUNTRY_CHOICES, default=None)
+    country = models.CharField(max_length=100, choices=COUNTRIES, default=None)
     city = models.CharField(max_length=50)
-    state = models.CharField(max_length=100, choices=STATE_CHOICES, default=None)
+    state = models.CharField(max_length=100, choices=STATES, default=None)
     street = models.CharField(max_length=100)
     house = models.CharField(max_length=100)
     flat = models.CharField(max_length=100)
 
-    class Meta:
-        verbose_name_plural = 'Адрес'
+
+    def __unicode__(self):
+        return self.country + ' ' + self.city
 
 class Author(models.Model):
     name = models.CharField(max_length=50)
@@ -41,25 +24,25 @@ class Author(models.Model):
     age = models.IntegerField(blank=True)
     address = models.ForeignKey(Address, null=True, blank=True)
 
-    class Meta:
-        verbose_name_plural = 'Автор'
+
+    def __unicode__(self):
+        return self.name
 
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
+    slug = models.SlugField(max_length=50, unique=True, help_text='Unique value by name',)
     description = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
-    meta_keywords = models.CharField("Meta Keywords",max_length=255,
-                                     help_text='Comma-delimited set of SEO keywords for meta tag', null=True, blank=True)
-    meta_description = models.CharField("Meta Description", max_length=255,
-                                    help_text='Content for description meta tag', null=True, blank=True)
+    meta_keywords = models.CharField(max_length=255,
+                                     help_text='For CEO', null=True, blank=True)
+    meta_description = models.CharField(max_length=255,
+                                    help_text='For CEO', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     class Meta:
         ordering = ['-created_at']
-        verbose_name_plural = 'Категория'
 
     def __unicode__(self):
         return self.name
@@ -71,19 +54,20 @@ class Category(models.Model):
 
 class Publisher(models.Model):
     name = models.CharField(max_length=50)
-    type = models.CharField(max_length=50, choices=PYBLISHER_TYPE_CHOICES, default=None)
+    type = models.CharField(max_length=50, choices=PUBLISHER_TYPE_CHOICES, default=None)
 
-    class Meta:
-        verbose_name_plural = 'Публицист'
+    def __unicode__(self):
+        return self.name
 
 
-class ActiveProductManager(models.Manager):
+class ActiveBookManager(models.Manager):
         def get_query_set(self):
-            return super(ActiveProductManager, self).get_query_set().filter(is_active=True)
+            return super(ActiveBookManager, self).get_query_set().filter(is_active=True)
 
-class Product(models.Model):
+class Book(models.Model):
     name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
+    slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for book page URL, created from name.',
+                            null=True, blank=True)
     brand = models.CharField(max_length=50)
     sku = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=9,decimal_places=2)
@@ -92,7 +76,7 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     is_bestseller = models.BooleanField(default=False)
     is_featured = models.BooleanField(default=False)
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(verbose_name="Количество")
     description = models.TextField(null=True, blank=True)
     meta_keywords = models.CharField("Meta Keywords",max_length=255,
                                      help_text='Comma-delimited set of SEO keywords for meta tag', null=True, blank=True)
@@ -102,12 +86,13 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     author = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher, null=True, blank=True)
-    categories = models.ManyToManyField(Category, through="ProductCategories")
-    orders = models.ManyToManyField(Order, through='OrderProductXref')
-    merchants = models.ManyToManyField(Merchant, through='MerchantProductXref')
+    categories = models.ManyToManyField(Category, through="BookCategories")
+    orders = models.ManyToManyField(Order, through='OrderBookXref')
+    deliverys = models.ManyToManyField(Delivery, through='DeliveryBookXref')
+
 
     objects = models.Manager()
-    active = ActiveProductManager()
+    active = ActiveBookManager()
 
 
     class Meta:
@@ -124,26 +109,33 @@ class Product(models.Model):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('catalog_product', (), { 'product_slug': self.slug })
+        return ('catalog_book', (), { 'book_slug': self.slug })
 
-    class Meta:
-        verbose_name_plural = 'Книга'
+    def button(self):
+        return '<input type="button" name="Order" value="Order" />'
+    button.allow_tags = True
+    button.short_description = "Action"
 
-class ProductCategories(models.Model):
-    product = models.ForeignKey(Product)
+
+class BookCategories(models.Model):
+    book = models.ForeignKey(Book)
     category = models.ForeignKey(Category)
 
-class OrderProductXref(models.Model):
-    product = models.ForeignKey(Product)
+    def __unicode__(self):
+        return self.book + '_' + self.category
+
+class OrderBookXref(models.Model):
+    book = models.ForeignKey(Book)
     order = models.ForeignKey(Order)
     quantity = models.IntegerField()
 
     def __unicode__(self):
-        return self.product.name
+        return self.book.name
 
-    class Meta:
-        verbose_name_plural = 'Продукты заказа'
 
-class MerchantProductXref(models.Model):
-    product = models.ForeignKey(Product)
-    merchant = models.ForeignKey(Merchant)
+class DeliveryBookXref(models.Model):
+    book = models.ForeignKey(Book)
+    delivery = models.ForeignKey(Delivery)
+
+    def __unicode__(self):
+        return self.book.name

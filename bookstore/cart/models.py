@@ -8,30 +8,30 @@ class CartItem(models.Model):
     cart_id = models.CharField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
     quantity = models.IntegerField(default=1)
-    product = models.ForeignKey('catalog.Product', unique=False)
+    book = models.ForeignKey('catalog.Book', unique=False)
 
     def __unicode__(self):
-        return self.product.name + ' ' + str(self.quantity)
+        return self.book.name + ' ' + str(self.quantity)
 
     class Meta:
         ordering = ['date_added']
-        verbose_name_plural = 'Продукт в корзине'
+        verbose_name_plural = 'Book in cart'
         
     def augment_quantity(self, quantity):
         self.quantity = self.quantity + int(quantity)
         self.save()
         
     def name(self):
-        return self.product.name
+        return self.book.name
 
     def price(self):
-        return self.product.price
+        return self.book.price
     
     def total(self):
-        return self.quantity * self.product.price
+        return self.quantity * self.book.price
     
     def get_absolute_url(self):
-        return self.product.get_absolute_url()
+        return self.book.get_absolute_url()
 
 
 

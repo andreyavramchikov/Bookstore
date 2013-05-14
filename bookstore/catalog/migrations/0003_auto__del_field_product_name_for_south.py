@@ -8,14 +8,14 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Deleting field 'Product.name_for_south'
-        db.delete_column('products', 'name_for_south')
+        # Deleting field 'Book.name_for_south'
+        db.delete_column('books', 'name_for_south')
 
 
     def backwards(self, orm):
 
-        # User chose to not deal with backwards NULL issues for 'Product.name_for_south'
-        raise RuntimeError("Cannot reverse this migration. 'Product.name_for_south' and its values cannot be restored.")
+        # User chose to not deal with backwards NULL issues for 'Book.name_for_south'
+        raise RuntimeError("Cannot reverse this migration. 'Book.name_for_south' and its values cannot be restored.")
 
     models = {
         u'catalog.category': {
@@ -30,8 +30,8 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50'}),
             'updated_at': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
         },
-        u'catalog.product': {
-            'Meta': {'ordering': "['-created_at']", 'object_name': 'Product', 'db_table': "'products'"},
+        u'catalog.book': {
+            'Meta': {'ordering': "['-created_at']", 'object_name': 'Book', 'db_table': "'books'"},
             'brand': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': u"orm['catalog.Category']", 'symmetrical': 'False'}),
             'created_at': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),

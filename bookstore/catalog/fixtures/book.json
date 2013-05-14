@@ -1,9 +1,9 @@
 [
   {
-    "model": "catalog.product",
+    "model": "catalog.book",
     "pk": 1,
     "fields": {
-      "name": "product1",
+      "name": "book1",
       "slug" : "slug1",
       "brand" : "brand1",
       "sku" : "sku1",
@@ -24,10 +24,10 @@
   },
 
   {
-    "model": "catalog.product",
+    "model": "catalog.book",
     "pk": 2,
     "fields": {
-      "name": "product2",
+      "name": "book2",
       "slug" : "slug2",
       "brand" : "brand2",
       "sku" : "sku2",
@@ -48,10 +48,10 @@
   },
 
   {
-    "model": "catalog.product",
+    "model": "catalog.book",
     "pk": 3,
     "fields": {
-      "name": "product3",
+      "name": "book3",
       "slug" : "slug3",
       "brand" : "brand3",
       "sku" : "sku3",
@@ -72,10 +72,10 @@
   },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 4,
         "fields": {
-            "name": "product4",
+            "name": "book4",
             "slug" : "slug4",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -96,10 +96,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 5,
         "fields": {
-            "name": "product5",
+            "name": "book5",
             "slug" : "slug5",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -120,10 +120,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 6,
         "fields": {
-            "name": "product6",
+            "name": "book6",
             "slug" : "slug6",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -144,10 +144,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 7,
         "fields": {
-            "name": "product7",
+            "name": "book7",
             "slug" : "slug7",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -168,10 +168,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 8,
         "fields": {
-            "name": "product8",
+            "name": "book8",
             "slug" : "slug8",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -192,10 +192,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 9,
         "fields": {
-            "name": "product9",
+            "name": "book9",
             "slug" : "slug9",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -216,10 +216,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 10,
         "fields": {
-            "name": "product10",
+            "name": "book10",
             "slug" : "slug10",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -240,10 +240,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 11,
         "fields": {
-            "name": "product11",
+            "name": "book11",
             "slug" : "slug11",
             "brand" : "brand1",
             "sku" : "sku1",
@@ -264,10 +264,10 @@
     },
 
     {
-        "model": "catalog.product",
+        "model": "catalog.book",
         "pk": 12,
         "fields": {
-            "name": "product12",
+            "name": "book12",
             "slug" : "slug12",
             "brand" : "brand1",
             "sku" : "sku1",

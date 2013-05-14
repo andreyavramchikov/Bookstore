@@ -1,37 +1,39 @@
 from django.contrib import admin
-from bookstore.catalog.forms import ProductAdminForm
-from bookstore.catalog.models import Product, Category, ProductCategories
+from bookstore.catalog.forms import BookAdminForm
+from bookstore.catalog.models import Book, Category, BookCategories
 from bookstore.catalog.models import Publisher
 from bookstore.catalog.models import Author, Address
 import uuid
-from catalog.models import OrderProductXref
+from catalog.models import OrderBookXref
 
 
-def clone_product(modeladmin, request, queryset):
-    products = queryset.all()
-    for product in products:
-        category = product.categories.all()[0]
-        product.pk = None
-        product.slug = uuid.uuid1().hex
-        product.save()
-        ProductCategories.objects.create(product=product, category=category)
+def clone_book(modeladmin, request, queryset):
+    books = queryset.all()
+    for book in books:
+        category = book.categories.all()[0]
+        book.pk = None
+        book.slug = uuid.uuid1().hex
+        book.save()
+        BookCategories.objects.create(book=book, category=category)
 
-clone_product.short_description = "Clone selected products"
+clone_book.short_description = "Clone selected books"
 
-class ProductAdmin(admin.ModelAdmin):
-    form = ProductAdminForm
-    
-    list_display = ('name', 'price', 'old_price', 'created_at', 'updated_at',)
+class BookAdmin(admin.ModelAdmin):
+    form = BookAdminForm
+    fields = ('name', 'price', 'image', 'quantity', 'description', 'author', 'publisher',)
+    list_display = ('name', 'price', 'old_price', 'created_at', 'updated_at','button',)
     list_display_links = ('name',)
     list_per_page = 50
     ordering = ['-created_at']
-    actions = [clone_product]
+    actions = [clone_book]
 
     search_fields = ['name', 'description', 'meta_keywords', 'meta_description']
-    # sets up slug to be generated from product name
-    prepopulated_fields = {'slug' : ('name',)}
-    
-admin.site.register(Product, ProductAdmin)
+    # sets up slug to be generated from book name
+    # prepopulated_fields = {'slug' : ('name',)}
+
+
+
+admin.site.register(Book, BookAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -44,12 +46,12 @@ class CategoryAdmin(admin.ModelAdmin):
 # sets up slug to be generated from category name
     prepopulated_fields = {'slug' : ('name',)}
 
-class OrderProductXrefAdmin(admin.ModelAdmin):
-    list_display = ('product', 'order', 'quantity')
+class OrderBookXrefAdmin(admin.ModelAdmin):
+    list_display = ('book', 'order', 'quantity')
     readonly_fields = ('order',)
-    raw_id_fields = ('product',)
+    raw_id_fields = ('book',)
 
-admin.site.register(OrderProductXref, OrderProductXrefAdmin)
+admin.site.register(OrderBookXref, OrderBookXrefAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Publisher)
 admin.site.register(Address)

@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 # Create your views here.
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from cart.models import CartItem
-from catalog.models import OrderProductXref, Product
+from catalog.models import OrderBookXref, Book
 from order.models import Order
 
 
@@ -15,7 +16,7 @@ def proccess_order(request, template_name='order/order.html'):
             # simplejson have to be used
             cart_items = CartItem.objects.filter(cart_id=cart_id)
             for cart_item in cart_items:
-                OrderProductXref.objects.create(product=cart_item.product, order=order, quantity=cart_item.quantity)
+                OrderBookXref.objects.create(book=cart_item.book, order=order, quantity=cart_item.quantity)
             cart_items.delete()
 
 

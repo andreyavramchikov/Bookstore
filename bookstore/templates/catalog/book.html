@@ -1,12 +1,12 @@
 {% extends "catalog.html" %}
 {% block content %}
-	<div class="product_image" >
-		<img class="product-image" src="{{ MEDIA_URL }}admin/img/{{ product.image }}" alt="{{ product.name}}" />
+	<div class="book_image" >
+		<img class="book-image" src="{{ MEDIA_URL }}admin/img/{{ book.image }}" alt="{{ book.name}}" />
 	</div>
-	<h1>{{ product.name }}</h1>
-	Brand: <em>{{ product.brand }}</em>
+	<h1>{{ book.name }}</h1>
+	Brand: <em>{{ book.brand }}</em>
 	<br /><br />
-	SKU: {{ product.sku }}
+	SKU: {{ book.sku }}
 	<br />
 	In categor{{ categories.count|pluralize:"y,ies" }}:
 	{% for category in categories %}
@@ -14,12 +14,12 @@
 		{% if not forloop.last %}, {% endif %}
 	{% endfor %}
 	<br /><br />
-	{% if product.sale_price %}
-	Was: <del>$ {{ product.old_price }}</del>
+	{% if book.sale_price %}
+	Was: <del>$ {{ book.old_price }}</del>
 	<br />
-	Now: $ {{ product.price }}
+	Now: $ {{ book.price }}
 	{% else %}
-	Price: $ {{ product.price }}
+	Price: $ {{ book.price }}
 	{% endif %}
 	<br /><br />
 	<form action="." method="post">
@@ -29,6 +29,6 @@
 	</form>
 	<br /><br />
 	<div class="cb"><br /><br /></div>
-	<h3>Product Description</h3>
-	{{ product.description }}
+	<h3>Book Description</h3>
+	{{ book.description }}
 {% endblock %}
